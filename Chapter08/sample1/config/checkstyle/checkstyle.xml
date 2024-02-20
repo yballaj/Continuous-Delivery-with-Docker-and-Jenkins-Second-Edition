@@ -9,4 +9,8 @@
                <property name="scope" value="public"/>
           </module>
      </module>
+      <!-- Added ConstantName rule -->
+          <module name="ConstantName">
+               <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+          </module>
 </module>
