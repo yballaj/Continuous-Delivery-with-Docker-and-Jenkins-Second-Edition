@@ -4,13 +4,13 @@
      "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
-     <module name="TreeWalker">
-          <module name="JavadocType">
-               <property name="scope" value="public"/>
-          </module>
-     </module>
-      <!-- Added ConstantName rule -->
-          <module name="ConstantName">
-               <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
-          </module>
+    <module name="TreeWalker">
+        <module name="JavadocType">
+            <property name="scope" value="public"/>
+        </module>
+        <!-- Added ConstantName rule inside TreeWalker -->
+        <module name="ConstantName">
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+        </module>
+    </module>
 </module>
