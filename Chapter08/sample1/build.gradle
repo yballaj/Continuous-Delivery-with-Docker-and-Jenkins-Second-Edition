@@ -35,7 +35,10 @@ jacocoTestCoverageVerification {
 }
 
 checkstyle {
-	checkstyleTest.enabled = false
+   toolVersion = '8.29' 
+    configFile = file('config/checkstyle/checkstyle.xml') 
+    checkstyleTest.enabled = false
+	
 }
 
 task acceptanceTest(type: Test) {
