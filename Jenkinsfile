@@ -24,7 +24,7 @@ podTemplate(containers: [
                         '''
 
                         // Conditional execution based on branch
-                        if (env.BRANCH_NAME == 'main') {
+                        if (env.BRANCH_NAME == 'master') {
                             // Execute coverage verification 
                             sh './gradlew jacocoTestCoverageVerification'
                            
