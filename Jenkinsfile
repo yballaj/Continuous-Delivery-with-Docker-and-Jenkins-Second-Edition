@@ -25,7 +25,7 @@ podTemplate(containers: [
 
                     // Conditionally execute coverage verification for the master branch
                     if (env.BRANCH_NAME == 'master') {
-                        sh './gradlew jacocoTestCoverageVerification'
+                        sh 'cd Chapter08/sample1 && ./gradlew jacocoTestCoverageVerification'
                     } else {
                         echo "Skipping 'jacocoTestCoverageVerification' for branch: ${env.BRANCH_NAME}"
                     }
