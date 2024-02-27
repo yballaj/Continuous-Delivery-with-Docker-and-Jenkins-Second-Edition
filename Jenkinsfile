@@ -7,37 +7,34 @@ podTemplate(containers: [
         stage('Run pipeline against a gradle project') {
             container('gradle') {
                 stage('Build a gradle project') {
-                    git 'https://github.com/dlambrig/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
+                    git 'https://github.com/yballaj/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
                     sh '''
                     cd Chapter08/sample1
                     chmod +x gradlew
                     '''
                 }
 
-                stage("Tests") {
-                    try {
-                        sh '''
-                        pwd
-                        cd Chapter08/sample1
-                        ./gradlew test
-                        ./gradlew checkstyleMain checkstyleTest
-                        '''
+                stage("Conditional Tests") {
+                    // Execute general tests for all branches
+                    sh '''
+                    pwd
+                    cd Chapter08/sample1
+                    ./gradlew test
+                    ./gradlew checkstyleMain checkstyleTest
+                    '''
 
-                        // Conditional execution based on branch
-                        if (env.BRANCH_NAME == 'master') {
-                            // Execute coverage verification 
-                            sh './gradlew jacocoTestCoverageVerification'
-                           
-                        }
-                    } catch (Exception E) {
-                        echo 'Failure detected'
+                    // Conditionally execute coverage verification for the master branch
+                    if (env.BRANCH_NAME == 'master') {
+                        sh './gradlew jacocoTestCoverageVerification'
+                    } else {
+                        echo "Skipping 'jacocoTestCoverageVerification' for branch: ${env.BRANCH_NAME}"
                     }
 
                     // Publish Checkstyle report for all branches
                     publishHTML(target: [
                         reportDir: 'Chapter08/sample1',
                         reportFiles: 'main.html', 
-                        reportName: "JaCoCo Checkstyle Report"
+                        reportName: "Checkstyle Report"
                     ])
                 }
             }
