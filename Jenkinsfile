@@ -32,7 +32,7 @@ podTemplate(containers: [
 
                     // Publish Checkstyle report for all branches
                     publishHTML(target: [
-                        reportDir: 'Chapter08/sample1/build/reports/checkstyle',
+                        reportDir: 'Chapter08/sample1',
                         reportFiles: 'main.html', 
                         reportName: "Checkstyle Report"
                     ])
