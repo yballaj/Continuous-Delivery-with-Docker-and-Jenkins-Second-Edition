@@ -20,6 +20,8 @@ public class Calculator {
           */
 	@Cacheable("sum")
 	public int sum(int a, int b) {
+		System.out.println("Value of a: " + a);
+                System.out.println("Value of b: " + b);
 		return a + b;
 	}
 }
