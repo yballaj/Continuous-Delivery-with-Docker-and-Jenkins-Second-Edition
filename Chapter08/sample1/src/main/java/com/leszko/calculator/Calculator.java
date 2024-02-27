@@ -20,7 +20,6 @@ public class Calculator {
           */
 	@Cacheable("sum")
 	public int sum(int a, int b) {
-               
 		return a + b;
 	}
 }
