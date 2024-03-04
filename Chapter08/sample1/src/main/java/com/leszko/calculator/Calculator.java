@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Calculator {
-        final static int UML_NUM_1 = 3; // Renamed constant
+        final static int UMLNUM1 = 3; // Renamed constant
 
 	  /**
            * Sums two integers.
