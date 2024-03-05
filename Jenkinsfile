@@ -17,28 +17,24 @@ podTemplate(containers: [
                 stage("Conditional Tests") {
                     boolean testsPassed = true
                     try {
-                        // Execute general tests for all branches
+                        // Execute tests and always run jacocoTestReport after tests
                         sh '''
                         pwd
                         cd Chapter08/sample1
-                        ./gradlew test
+                        ./gradlew test finalizedBy jacocoTestReport
                         ./gradlew checkstyleMain
                         '''
                     } catch (Exception e) {
                         testsPassed = false
                         echo "Tests failed!"
-                    } finally {
-                        // Generate JaCoCo report no matter if tests pass or fail
-                        sh '''
-                        cd Chapter08/sample1
-                        ./gradlew jacocoTestReport
-                        
-                        '''
-                        if (testsPassed) {
-                            echo "Tests passed!"
-                        }
                     }
-
+                    
+                    if (testsPassed) {
+                        echo "Tests passed!"
+                    }
+                    
+                    // No need for a finally block here because finalizedBy ensures jacocoTestReport runs
+                    
                     // Conditionally execute coverage verification for the main branch
                     if (env.BRANCH_NAME == 'main') {
                         sh 'cd Chapter08/sample1 && ./gradlew jacocoTestCoverageVerification'
@@ -48,14 +44,14 @@ podTemplate(containers: [
                      
                     // Publish JaCoCo Report for all branches
                     publishHTML(target: [
-                        reportDir: 'Chapter08/sample1',
+                        reportDir: 'Chapter08/sample1/build/reports/jacoco/test/html',
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
                     ])
                     
                     // Publish Checkstyle report for all branches
                     publishHTML(target: [
-                        reportDir: 'Chapter08/sample1',
+                        reportDir: 'Chapter08/sample1/build/reports/checkstyle',
                         reportFiles: 'main.html', 
                         reportName: "Checkstyle Report"
                     ])
