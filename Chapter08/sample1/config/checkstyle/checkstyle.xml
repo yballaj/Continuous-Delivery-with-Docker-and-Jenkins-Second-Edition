@@ -1,14 +1,20 @@
-<?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-     "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
-     "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
-
 <module name="Checker">
     <module name="TreeWalker">
         <module name="JavadocType">
             <property name="scope" value="public"/>
+            <!-- Add this line if you want to enforce JavaDoc on package-private types -->
+            <property name="excludeScope" value="private"/>
         </module>
-        <!-- Added ConstantName rule inside TreeWalker -->
+        <module name="JavadocMethod">
+            <property name="scope" value="public"/>
+            <!-- Add this line if you want to enforce JavaDoc on package-private methods -->
+            <property name="excludeScope" value="private"/>
+        </module>
+        <module name="JavadocVariable">
+            <property name="scope" value="public"/>
+            <!-- Add this line if you want to enforce JavaDoc on package-private variables -->
+            <property name="excludeScope" value="private"/>
+        </module>
         <module name="ConstantName">
             <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
         </module>
