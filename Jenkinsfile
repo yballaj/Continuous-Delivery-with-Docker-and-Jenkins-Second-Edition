@@ -31,6 +31,7 @@ podTemplate(containers: [
                         sh '''
                         cd Chapter08/sample1
                         ./gradlew jacocoTestReport
+                        ./gradlew checkstyleMain checkstyleTest
                         '''
                         if (testsPassed) {
                             echo "Tests passed!"
