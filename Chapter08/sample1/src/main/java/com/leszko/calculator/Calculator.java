@@ -3,13 +3,10 @@ package com.leszko.calculator;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-/**
- * Calculator service that provides basic arithmetic operations.
- */
 
 @Service
 public class Calculator {
-        final static int UMLNUM1 = 3; // Renamed constant
+        final static int UMLNUM1 = 3; 
 
 	
 	@Cacheable("sum")
