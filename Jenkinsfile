@@ -22,7 +22,7 @@ podTemplate(containers: [
                         pwd
                         cd Chapter08/sample1
                         ./gradlew test
-                         ./gradlew checkstyleMain 
+                        ./gradlew checkstyleMain
                         '''
                     } catch (Exception e) {
                         testsPassed = false
@@ -32,7 +32,7 @@ podTemplate(containers: [
                         sh '''
                         cd Chapter08/sample1
                         ./gradlew jacocoTestReport
-                       
+                        
                         '''
                         if (testsPassed) {
                             echo "Tests passed!"
