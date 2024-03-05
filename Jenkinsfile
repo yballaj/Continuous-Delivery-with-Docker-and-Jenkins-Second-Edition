@@ -22,7 +22,7 @@ podTemplate(containers: [
                         pwd
                         cd Chapter08/sample1
                         ./gradlew test
-						./gradlew checkstyleMain checkstyleTest
+			./gradlew checkstyleMain checkstyleTest
                         '''
                     } catch (Exception e) {
                         testsPassed = false
