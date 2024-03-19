@@ -1,5 +1,5 @@
 pipeline {
-    agent none // Start without a global agent
+    agent any 
 
     stages {
         stage('Prepare Environment') {
