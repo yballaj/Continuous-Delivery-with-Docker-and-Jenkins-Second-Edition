@@ -63,11 +63,11 @@ spec:
                         try {
                             sh '''
                             cd Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition/Chapter08/sample1
-                            ./gradlew test --no-daemon
-                            ./gradlew checkstyleMain --no-daemon
+                            ./gradlew test 
+                            ./gradlew checkstyleMain 
                             '''
                             if (env.BRANCH_NAME == 'main') {
-                                sh 'cd Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition/Chapter08/sample1 && ./gradlew jacocoTestCoverageVerification --no-daemon'
+                                sh 'cd Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition/Chapter08/sample1 && ./gradlew jacocoTestCoverageVerification '
                             }
                         } catch (Exception e) {
                             testsPassed = false
