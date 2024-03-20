@@ -66,7 +66,7 @@ spec:
                             ./gradlew test 
                             ./gradlew checkstyleMain 
                             '''
-                            if (env.BRANCH_NAME == 'main') {
+                            if (env.BRANCH_NAME == 'master') {
                                 sh 'cd Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition/Chapter08/sample1 && ./gradlew jacocoTestCoverageVerification '
                             }
                         } catch (Exception e) {
@@ -92,8 +92,8 @@ spec:
                 script {
                     container('kaniko') {
                         // Determine image name based on branch
-                        def imageTag = (env.BRANCH_NAME == 'main') ? '1.0' : '0.1'
-                        def imageName = (env.BRANCH_NAME == 'main' || env.BRANCH_NAME.startsWith('release')) ? 'calculator' : 'calculator-feature'
+                        def imageTag = (env.BRANCH_NAME == 'master') ? '1.0' : '0.1'
+                        def imageName = (env.BRANCH_NAME == 'master' || env.BRANCH_NAME.startsWith('release')) ? 'calculator' : 'calculator-feature'
                         sh """
                         echo 'FROM openjdk:8-jre' > Dockerfile
                         echo 'COPY ./build/libs/*.jar app.jar' >> Dockerfile
