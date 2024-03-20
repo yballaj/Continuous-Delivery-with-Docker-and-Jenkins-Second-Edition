@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class Calculator {
-        final static int UMLNUM1 = 3; 
+        final static int UML_NUM1 = 3; 
 
 	/**
          * Sums two integers.
